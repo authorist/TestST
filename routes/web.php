@@ -17,12 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
+Route::middleware(['auth','verified'])->get('/panel', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
+route::group(['middleware' => ['auth','isAdmin'],'prefix'=>'admin'],function(){
+
+    
 });
+
