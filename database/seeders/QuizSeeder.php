@@ -10,7 +10,7 @@ class QuizSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @return voiddfgfd
      */
     public function run()
     {
