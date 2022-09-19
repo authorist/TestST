@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
         <!-- Styles -->
         @livewireStyles
@@ -33,12 +34,40 @@
                     </div>
                 </header>
             @endif
-
+          
             <!-- Page Content -->
             <main>
                <div class="py-12">
                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+                   <!-- Laravel 9 Flash Message Example -->
+
+                   @if($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+    @endforeach
+</div>   
+@endif
+
+@if(session('success'))
+<div class="alert alert-success">
+    <i class="fa fa-check"></i>{{session('success')}}
+</div>
+@endif
+
+
+
+@if(Session::has('info'))
+    <div class="alert alert-danger">
+       {{Session::get('info')}}
+    </div>
+@endif
+
+
                                {{ $slot }}
+                               
+                               
                        </div>
                      </div>
               </div>
@@ -48,6 +77,10 @@
 
         @stack('modals')
 
+        @isset($js)
+        {{ $js }}    <!-- jquery scriptim buarada render alır  -->
+        @endif
+ 
         @livewireScripts
     </body>
 </html>

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">Quizler Listeleme Sayfasu</x-slot>
+    <x-slot name="header">Quizler Listeleme....quiz  ....   list.blade</x-slot>
   
 
     <div class="card">
@@ -21,8 +21,8 @@
             <td>{{ $quiz->status }}</td>
             <td>{{ $quiz->finished_at }}</td>
             <td>
-                <a href="#" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                <a href="{{ route('elma.edit',$quiz->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('elma.destroy',$quiz->id) }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
             </td>
         </tr>
          @endforeach 

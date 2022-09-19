@@ -23,9 +23,13 @@ Route::middleware(['auth','verified'])->get('/panel', function () {
     })->name('dashboard');
 
 
+    
+// Yönetim paneli
 route::group(['middleware' => ['auth','isAdmin'],'prefix'=>'admin'],function(){
-
-       route::resource('elma',QuizController::class);
+// method ezme yöntemi çünkü list bladede silme butonu get olarak geliyor destroy metodu put  onu resource controller show metoduna yönlendiriryor onun için destroy metodunu tektrar yazıp üstte koyarak önce ona girmesini sagladık
+//ayrıca ikinci parametre create işlemi gerçekleşinxce ikinci parametre string dönüyor onuda engellemek lazım yoksa destory algılıyor create blade gitmiyor destroy sadece id alsın olarak engelledik  
+route::get('elma/{id}',[QuizController::class,'destroy'])->whereNumber('id')->name('elma.destroy');
+    route::resource('elma',QuizController::class);
     
 });
 
